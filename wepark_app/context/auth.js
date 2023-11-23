@@ -2,8 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useEffect, useState } from "react";
 import config from "../server.config";
 import axios from "axios";
-
-//global.Buffer = require('buffer').Buffer;
+global.Buffer = require('buffer').Buffer;
 
 export const AuthContext = createContext();
 
@@ -31,7 +30,6 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const login = async (inputs) => {
-    const { isLoading, error, data } = useQuery(["login", inputs], () => makeRequest.get("/auth/login", inputs, { withCredentials: true }).then((res) => res.data));
     try{
       const res = await axios.post(
         config.SERVER_URL + "/api/auth/login",

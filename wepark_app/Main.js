@@ -1,13 +1,12 @@
 import { createStackNavigator, CardStyleInterpolators, } from "@react-navigation/stack";
-import BottomTabNavigation from "./navigation/BottomTabNavigation";
 import { NavigationContainer } from "@react-navigation/native";
-import { AuthContext } from "./context/authContext";
+import TabNavigation from "./navigation/TabNavigation";
+import { AuthContext } from "./context/auth";
 import * as SplashScreen from "expo-splash-screen";
-import { useCallback, useContext, useEffect } from "react";
-import LoginTab from "./login/LoginNavigation";
+import { useCallback, useContext } from "react";
 import { StatusBar } from "expo-status-bar";
 import { useFonts } from "expo-font";
-
+import { Login } from "./screens";
 
 const Stack = createStackNavigator();
 
@@ -50,13 +49,13 @@ export default function Main() {
           !isLoged ? (
             <Stack.Screen
               name="Register-Login"
-              component={LoginTab}
+              component={Login}
               options={{ headerShown: false }}
             />
           ) : (
             <Stack.Screen
               name="Bottom-Navigation"
-              component={BottomTabNavigation}
+              component={TabNavigation}
               options={{ headerShown: false }}
             />
           )
